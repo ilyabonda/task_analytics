@@ -1,0 +1,114 @@
+{
+    "objects": {
+        "GradingTask": {
+            "type":"object",
+            "title":"Задача на повышение",
+            "properties": {
+                "id": {
+                    "type":"string",
+                    "fieldDescription":"Иденктификатор задачи",
+                    "example": ["taskAnalyticSenior12","1201","tas1201"],
+                    "required": true
+                },
+                "name": {
+                    "type":"string",
+                    "fieldDescription":"Должность и ожидаемый грейд сотрудника",
+                    "example": "Задача на должность Старшего аналитика",
+                    "required": true
+                },
+                "employeeLogin": {
+                    "type":"string",
+                    "fieldDescription":"Логин сотрудника",
+                    "required": true
+                },
+                "compMatrixId": {
+                    "type":"string",
+                    "fieldDescription":"Идентификатор матрицы компетенций",
+                    "example": ["matrixAnalyticSenior5","1105","mas1105"],
+                    "required": true
+                },
+                "startDate": {
+                    "type":"string",
+                    "format": "date",
+                    "fieldDescription":"Дата начала выполнения",
+                    "example": "2025-04-15",
+                    "required": false
+                },
+                "dueDate": {
+                    "type":"string",
+                    "format": "date",
+                    "fieldDescription":"Планируемая дата выполнения",
+                    "example": "2025-04-21",
+                    "required": true
+                },
+                "status": {
+                    "type":"string",
+                    "fieldDescription":"Текущее состояние задачи", 
+                    "enum": ["Назначена", "В работе", "Проверяется", "Выполнена", "Не выполнена успешно", "Отменена"],
+                    "required": true
+                },
+                "lastStatusChange": {
+                    "type":"string",
+                    "format": "date",
+                    "fieldDescription":"Дата изменения статуса задачи",
+                    "example": "2025-04-21",
+                    "required": false
+                }
+            }
+        },
+
+
+        "CompetencyMatrix": {
+            "type": "object",
+            "title": "Матрица компетенций",
+            "description": "Справочник требований для перехода на следующий грейд",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "fieldDescription": "Идентификатор матрицы компетенций",
+                    "example": ["matrixAnalyticSenior5","1105","mas1105"],
+                    "required": true
+                },
+                "name": {
+                    "type": "string",
+                    "fieldDescription": "Название матрицы",
+                    "example": "Необходимо для перехода с middle-аналитик на senior-аналитик должность",
+                    "required": true
+                },
+                "target_grade": {
+                    "type": "string",
+                    "fieldDescription": "Ожидаемый грейд после закрытия задачи",
+                    "example": "Senior-аналитик",
+                    "required": true
+                },
+                "competencies": {
+                    "type": "array",
+                    "fieldDescription": "Список компетенций",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": { 
+                                "type": "string",
+                                "required": true
+                            },
+                            "description": { 
+                                "type": "string",
+                                "example": "Прочитать такую-то книгу, изучить какую-то методологию",
+                                "required": true
+                            }
+                        },
+                        "required": true    
+                    },
+                    "required": true
+                },
+                "description": {
+                    "type": "string",
+                    "fieldDescription": "Подробное описание требований",
+                    "example": "Навыки для senior-аналитика",
+                    "required": false
+                }
+            }
+        }
+    }
+   
+}
